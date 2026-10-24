@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- OFFICE 99 — monogram "99" drawn as geometry (no font dependency) -->
+  <rect width="32" height="32" rx="7" fill="#51000E" />
+  <g fill="none" stroke="#BDE0FF" stroke-width="3" stroke-linecap="square">
+    <circle cx="10" cy="12" r="4" />
+    <path d="M14 12v12" />
+    <circle cx="22" cy="12" r="4" />
+    <path d="M26 12v12" />
+  </g>
+</svg>

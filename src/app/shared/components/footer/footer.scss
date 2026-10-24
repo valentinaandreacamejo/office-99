@@ -44,11 +44,44 @@
   }
 }
 
-.footer__credits {
+.footer__bottom {
   grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
   padding-top: 1.25rem;
   border-top: 1px solid color-mix(in srgb, var(--color-powder) 35%, transparent);
   font-size: var(--fs-xs);
   text-transform: uppercase;
   letter-spacing: 0.06em;
+}
+
+// Discreet author credit
+.footer__signature {
+  color: color-mix(in srgb, var(--color-powder) 60%, transparent);
+
+  a {
+    color: var(--color-powder);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.3em;
+    transition:
+      color var(--duration) var(--ease-snap),
+      text-decoration-color var(--duration) var(--ease-snap);
+
+    span {
+      display: inline-block;
+      transition: transform var(--duration) var(--ease-snap);
+    }
+
+    &:hover {
+      color: var(--color-white);
+      text-decoration-color: currentColor;
+
+      span {
+        transform: translate(2px, -2px);
+      }
+    }
+  }
 }
