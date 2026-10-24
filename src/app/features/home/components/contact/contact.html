@@ -1,0 +1,24 @@
+<section id="contact" class="contact" aria-labelledby="contact-title">
+  <div class="contact__card">
+    <img
+      class="contact__bg"
+      src="assets/images/contact-window-sky.jpg"
+      alt=""
+      width="1200"
+      height="896"
+      loading="lazy"
+    />
+
+    <div class="contact__content">
+      <app-badge label="04 // CONTACT" variant="garnet" />
+      <h2 id="contact-title" class="contact__title text-garnet">
+        Answer your brand's <em>calling.</em>
+      </h2>
+      <a appButton class="contact__cta" [href]="'mailto:' + email">
+        <img src="assets/icons/vintage-envelope.svg" alt="" width="28" height="28" />
+        Start a project
+      </a>
+      <a class="contact__mail font-mono" [href]="'mailto:' + email">{{ email }}</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,12 @@
+<div class="ticker__viewport" role="marquee" [attr.aria-label]="items().join(', ')">
+  @for (copy of [0, 1, 2, 3]; track copy) {
+    <ul class="ticker__track" role="list" aria-hidden="true">
+      @for (item of items(); track $index) {
+        <li class="ticker__item">
+          <span>{{ item }}</span>
+          <span class="ticker__sep">{{ separator() }}</span>
+        </li>
+      }
+    </ul>
+  }
+</div>

@@ -1,0 +1,94 @@
+@use 'mixins' as *;
+
+:host {
+  display: block;
+}
+
+.contact {
+  @include section;
+}
+
+.contact__card {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  min-height: clamp(28rem, 60vw, 44rem);
+  overflow: hidden;
+  border: var(--border);
+  border-radius: 1.5rem;
+  box-shadow: 8px 8px 0 var(--color-garnet);
+}
+
+.contact__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 50%;
+  transition: transform 1.2s var(--ease-snap);
+
+  .contact__card:hover & {
+    transform: scale(1.04);
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
+}
+
+// Sits on the pale wall, above the garnet floor
+.contact__content {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  padding: clamp(1.5rem, 5vw, 4rem);
+  // Veil over the dark doorway so the headline stays legible
+  background: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--color-bg) 85%, transparent) 35%,
+    transparent 70%
+  );
+
+  @include mobile {
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-bg) 85%, transparent) 60%,
+      transparent
+    );
+  }
+}
+
+.contact__title {
+  max-width: 12ch;
+  font-size: clamp(2.5rem, 1rem + 5vw, 6rem);
+
+  em {
+    font-weight: 400;
+  }
+}
+
+.contact__cta {
+  font-size: var(--fs-md);
+
+  img {
+    width: 1.75em;
+    height: auto;
+    border-radius: 0.3em;
+    transition: transform var(--duration) var(--ease-snap);
+  }
+
+  &:hover img {
+    transform: rotate(-10deg) scale(1.1);
+  }
+}
+
+.contact__mail {
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  color: var(--color-garnet);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}

@@ -1,0 +1,43 @@
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__copy">
+    <img
+      class="hero__clip"
+      src="assets/icons/paperclip.svg"
+      alt=""
+      width="120"
+      height="120"
+      aria-hidden="true"
+    />
+
+    <div class="hero__meta">
+      <app-badge label="000" variant="garnet" />
+      <span class="font-mono">Portfolio / Vol. 26</span>
+    </div>
+
+    <h1 id="hero-title" class="hero__title text-garnet">
+      Digital presence, <em>done with purpose</em>
+    </h1>
+
+    <p class="hero__lead font-ui">
+      Re-engineering web experiences through editorial precision &amp; high-performance Angular
+      architecture.
+    </p>
+
+    <div class="hero__actions">
+      <a appButton routerLink="/" fragment="projects">View work</a>
+      <a appButton variant="outline" routerLink="/" fragment="contact">Open a ticket</a>
+    </div>
+  </div>
+
+  <figure class="hero__figure">
+    <img
+      class="hero__img"
+      src="assets/images/hero-chair-phone.jpg"
+      alt="Office chair beside a vintage telephone in a minimal room"
+      width="1024"
+      height="1280"
+      fetchpriority="high"
+    />
+    <app-badge class="hero__file" label="FILE_001 // HERO_ARCHIVE" variant="powder" />
+  </figure>
+</section>

@@ -1,0 +1,142 @@
+// ==========================================================================
+// OFFICE 99 — Utility classes & design-system primitives
+// ==========================================================================
+@use 'mixins' as *;
+
+// --- Color utilities --------------------------------------------------------
+.bg-garnet {
+  background-color: var(--color-garnet);
+  color: var(--color-powder);
+}
+
+.bg-powder {
+  background-color: var(--color-powder);
+  color: var(--color-garnet);
+}
+
+.text-garnet {
+  color: var(--color-garnet);
+}
+
+.text-powder {
+  color: var(--color-powder);
+}
+
+// --- Badge / archive tag: [001] ---------------------------------------------
+.badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.2em 0.6em;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  line-height: 1.4;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  &--garnet {
+    background-color: var(--color-garnet);
+    border-color: var(--color-garnet);
+    color: var(--color-powder);
+  }
+
+  &--powder {
+    background-color: var(--color-powder);
+    border-color: var(--color-garnet);
+    color: var(--color-garnet);
+  }
+
+  // Blinking status dot, e.g. [● SYSTEM ONLINE]
+  &--live::before {
+    content: '';
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    background-color: currentColor;
+    animation: badge-blink 1.2s steps(2, jump-none) infinite;
+
+    @include reduced-motion {
+      animation: none;
+    }
+  }
+}
+
+@keyframes badge-blink {
+  to {
+    opacity: 0;
+  }
+}
+
+// --- Button: stamp / pill ---------------------------------------------------
+.btn-office {
+  --btn-bg: var(--color-garnet);
+  --btn-fg: var(--color-powder);
+  --btn-border: var(--color-garnet);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  padding: 0.85em 1.6em;
+  border: var(--border-width) solid var(--btn-border);
+  border-radius: var(--radius-pill);
+  background-color: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--font-ui);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color var(--duration) var(--ease-snap),
+    color var(--duration) var(--ease-snap),
+    box-shadow var(--duration) var(--ease-snap),
+    transform var(--duration) var(--ease-snap);
+
+  // Contrast swap + stamp shadow
+  &:hover {
+    background-color: var(--btn-fg);
+    color: var(--btn-bg);
+    box-shadow: var(--shadow-stamp);
+    transform: translate(-2px, -2px);
+  }
+
+  &:active {
+    box-shadow: none;
+    transform: translate(0, 0);
+  }
+
+  &:disabled,
+  &[aria-disabled='true'] {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  &--powder {
+    --btn-bg: var(--color-powder);
+    --btn-fg: var(--color-garnet);
+  }
+
+  &--outline {
+    --btn-bg: transparent;
+    --btn-fg: var(--color-garnet);
+
+    &:hover {
+      background-color: var(--color-garnet);
+      color: var(--color-powder);
+    }
+  }
+
+  @include reduced-motion {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}

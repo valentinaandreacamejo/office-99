@@ -1,0 +1,67 @@
+@use 'mixins' as *;
+
+:host {
+  --ticker-duration: 30s;
+  --ticker-bg: var(--color-garnet);
+  --ticker-fg: var(--color-powder);
+
+  display: block;
+  overflow: hidden;
+  background-color: var(--ticker-bg);
+  color: var(--ticker-fg);
+  border-block: var(--border-width) solid var(--color-text);
+}
+
+:host(.ticker--powder) {
+  --ticker-bg: var(--color-powder);
+  --ticker-fg: var(--color-garnet);
+}
+
+.ticker__viewport {
+  display: flex;
+  width: max-content;
+}
+
+.ticker__track {
+  display: flex;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: ticker-scroll var(--ticker-duration) linear infinite;
+
+  :host(.ticker--reverse) & {
+    animation-direction: reverse;
+  }
+
+  :host(:hover) & {
+    animation-play-state: paused;
+  }
+
+  @include reduced-motion {
+    animation: none;
+  }
+}
+
+.ticker__item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.75rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.ticker__sep {
+  letter-spacing: 0;
+  opacity: 0.7;
+}
+
+@keyframes ticker-scroll {
+  to {
+    transform: translateX(-100%);
+  }
+}

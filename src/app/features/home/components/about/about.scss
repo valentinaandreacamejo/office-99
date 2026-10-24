@@ -1,0 +1,113 @@
+@use 'mixins' as *;
+
+:host {
+  display: block;
+}
+
+.about__inner {
+  @include section;
+
+  display: grid;
+  gap: clamp(3rem, 6vw, 5rem);
+
+  @include desktop {
+    grid-template-columns: 1fr 1.1fr;
+    align-items: center;
+  }
+}
+
+// Stacked photos: the detail shot slides forward on hover
+.about__stack {
+  position: relative;
+  width: min(100%, 34rem);
+  justify-self: center;
+  padding: 0 18% 18% 0;
+}
+
+.about__img {
+  border: var(--border-width) solid var(--color-powder);
+  border-radius: 1rem;
+  object-fit: cover;
+  transition:
+    transform 400ms var(--ease-snap),
+    box-shadow 400ms var(--ease-snap);
+
+  &--main {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+  }
+
+  &--detail {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 48%;
+    height: auto;
+    aspect-ratio: 1;
+    box-shadow: 6px 6px 0 var(--color-powder);
+    transform: rotate(4deg);
+  }
+
+  .about__stack:hover &--main {
+    transform: translate(-6px, -6px) rotate(-1.5deg);
+  }
+
+  .about__stack:hover &--detail {
+    transform: translate(-8px, -8px) rotate(0deg) scale(1.06);
+    box-shadow: 10px 10px 0 var(--color-powder);
+  }
+
+  @include reduced-motion {
+    transition: none;
+  }
+}
+
+.about__copy {
+  display: grid;
+  justify-items: start;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.about__statement {
+  font-size: clamp(2rem, 1rem + 2.6vw, 3.5rem);
+  line-height: 1.05;
+
+  em {
+    display: block;
+    margin-top: 0.4em;
+    font-weight: 400;
+    color: var(--color-powder);
+  }
+}
+
+.about__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  border-top: var(--border-width) solid var(--color-powder);
+}
+
+.about__stat {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem 0 0;
+
+  & + & {
+    padding-left: 1rem;
+    border-left: var(--border-width) solid var(--color-powder);
+  }
+
+  dt {
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  dd {
+    font-size: clamp(2.5rem, 1.5rem + 3vw, 4.5rem);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+}

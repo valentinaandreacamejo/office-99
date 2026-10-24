@@ -1,0 +1,57 @@
+// ==========================================================================
+// OFFICE 99 — Design tokens
+// Imported once from styles.scss: emits the :root custom properties.
+// Component stylesheets should NOT @use this file (it would duplicate :root);
+// they consume the CSS custom properties and @use 'mixins' instead.
+// ==========================================================================
+@use 'sass:meta';
+
+// --- Colors -----------------------------------------------------------------
+$color-garnet: #51000e; // Primary — burgundy
+$color-powder: #bde0ff; // Secondary — powder blue
+$color-bg: #f4f6f9; // Neutral background
+$color-text: #111111; // Ink
+$color-white: #ffffff;
+
+// --- Type stacks ------------------------------------------------------------
+$font-display: 'Playfair Display', 'Times New Roman', serif;
+$font-ui: 'Syne', 'Inter', system-ui, sans-serif;
+$font-mono: 'Space Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+:root {
+  // Colors
+  --color-garnet: #{$color-garnet};
+  --color-powder: #{$color-powder};
+  --color-bg: #{$color-bg};
+  --color-text: #{$color-text};
+  --color-white: #{$color-white};
+
+  // Fonts
+  --font-display: #{meta.inspect($font-display)};
+  --font-ui: #{meta.inspect($font-ui)};
+  --font-mono: #{meta.inspect($font-mono)};
+
+  // Type scale (fluid)
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lg: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  --fs-xl: clamp(2rem, 1.25rem + 3vw, 3.5rem);
+  --fs-display: clamp(3.5rem, 1rem + 10vw, 11rem);
+
+  // Lines, radii, shadows
+  --border-width: 1.5px;
+  --border: var(--border-width) solid var(--color-text);
+  --radius-pill: 999px;
+  --shadow-stamp: 4px 4px 0 var(--color-text);
+
+  // Motion
+  --ease-snap: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration: 200ms;
+
+  // Layout
+  --container-max: 1440px;
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --section-space: clamp(4rem, 10vw, 9rem);
+  --header-height: 4.5rem;
+}

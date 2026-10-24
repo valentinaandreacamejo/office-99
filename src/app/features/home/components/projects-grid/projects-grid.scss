@@ -1,0 +1,156 @@
+@use 'mixins' as *;
+
+:host {
+  display: block;
+}
+
+.projects {
+  @include section;
+}
+
+.projects__head {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+
+  em {
+    font-weight: 400;
+  }
+}
+
+// Asymmetric bento: 1 big tile, 1 wide, 2 small
+.projects__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: minmax(15rem, auto);
+  gap: 1rem;
+
+  @include tablet-up {
+    grid-template-columns: repeat(2, 1fr);
+
+    > :first-child {
+      grid-column: span 2;
+    }
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(17rem, auto);
+
+    // [ big  big ][ wide wide ]
+    // [ big  big ][ sm ][ sm  ]
+    > :first-child {
+      grid-row: span 2;
+    }
+
+    > :nth-child(2) {
+      grid-column: span 2;
+    }
+  }
+}
+
+.card {
+  --card-hover-bg: var(--color-powder);
+  --card-hover-fg: var(--color-garnet);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  overflow: hidden;
+  border: var(--border);
+  border-radius: 1rem;
+  background-color: var(--color-bg);
+  transition:
+    background-color 400ms var(--ease-snap),
+    color 400ms var(--ease-snap),
+    box-shadow var(--duration) var(--ease-snap),
+    transform var(--duration) var(--ease-snap);
+
+  &--garnet {
+    --card-hover-bg: var(--color-garnet);
+    --card-hover-fg: var(--color-powder);
+  }
+
+  &:hover {
+    background-color: var(--card-hover-bg);
+    color: var(--card-hover-fg);
+    box-shadow: var(--shadow-stamp);
+    transform: translate(-2px, -2px);
+  }
+
+  @include reduced-motion {
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+.card__ref {
+  align-self: flex-start;
+}
+
+.card__body {
+  display: grid;
+  justify-items: start;
+  gap: 0.75rem;
+  max-width: 80%;
+}
+
+.card__meta {
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.card__title {
+  font-size: clamp(1.75rem, 1rem + 2vw, 2.75rem);
+
+  .card:first-child & {
+    @include desktop {
+      font-size: clamp(2.5rem, 1rem + 3vw, 4.5rem);
+    }
+  }
+}
+
+.card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.card__tag {
+  padding: 0.2em 0.75em;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-xs);
+}
+
+// Stamp reveal on hover
+.card__icon {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  width: clamp(4rem, 8vw, 6rem);
+  height: auto;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(1.4) rotate(-20deg);
+  transition:
+    opacity 300ms var(--ease-snap),
+    transform 300ms var(--ease-snap);
+
+  .card:hover & {
+    opacity: 1;
+    transform: scale(1) rotate(-8deg);
+  }
+
+  // Touch screens have no hover: keep the stamp visible
+  @media (hover: none) {
+    opacity: 1;
+    transform: rotate(-8deg);
+  }
+}

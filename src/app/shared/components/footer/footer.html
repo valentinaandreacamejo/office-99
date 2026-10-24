@@ -1,0 +1,15 @@
+<footer class="footer bg-garnet">
+  <div class="footer__inner">
+    <p class="footer__wordmark font-ui">OFFICE&nbsp;99</p>
+
+    <ul class="footer__social font-mono" role="list" aria-label="Social">
+      @for (link of socials; track link.label) {
+        <li>
+          <a [href]="link.href" target="_blank" rel="noopener noreferrer">[{{ link.label }}]</a>
+        </li>
+      }
+    </ul>
+
+    <p class="footer__credits font-mono">© {{ year }} OFFICE 99. All rights reserved.</p>
+  </div>
+</footer>

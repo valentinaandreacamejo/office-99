@@ -1,0 +1,35 @@
+<section id="projects" class="projects" aria-labelledby="projects-title">
+  <header class="projects__head">
+    <app-badge label="01 // SELECTED WORK" />
+    <h2 id="projects-title">Selected <em>projects</em></h2>
+  </header>
+
+  <ul class="projects__grid" role="list">
+    @for (project of projects(); track project.code; let even = $even) {
+      <li class="card" [class.card--garnet]="!even">
+        <app-badge class="card__ref" [label]="'REF: ' + project.code" />
+
+        <div class="card__body">
+          <p class="card__meta font-mono">{{ project.client }} — {{ project.year }}</p>
+          <h3 class="card__title">{{ project.title }}</h3>
+          <ul class="card__tags" role="list" aria-label="Tech stack">
+            @for (tag of project.tags; track tag) {
+              <li class="card__tag font-mono">{{ tag }}</li>
+            }
+          </ul>
+        </div>
+
+        <img
+          class="card__icon"
+          [src]="even ? 'assets/icons/rubber-stamp.svg' : 'assets/icons/vintage-laptop.svg'"
+          alt=""
+          width="96"
+          height="96"
+          loading="lazy"
+        />
+      </li>
+    } @empty {
+      <li class="font-mono">[NO FILES FOUND]</li>
+    }
+  </ul>
+</section>

@@ -1,0 +1,54 @@
+@use 'mixins' as *;
+
+:host {
+  display: block;
+}
+
+.footer__inner {
+  @include container;
+
+  display: grid;
+  gap: 1.5rem;
+  padding-block: clamp(2.5rem, 6vw, 4rem) 2rem;
+
+  @include tablet-up {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+}
+
+.footer__wordmark {
+  font-size: clamp(2.5rem, 1rem + 6vw, 6rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+.footer__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: var(--fs-sm);
+  text-transform: uppercase;
+
+  a {
+    transition:
+      color var(--duration) var(--ease-snap),
+      opacity var(--duration) var(--ease-snap);
+    opacity: 0.8;
+
+    &:hover {
+      color: var(--color-white);
+      opacity: 1;
+    }
+  }
+}
+
+.footer__credits {
+  grid-column: 1 / -1;
+  padding-top: 1.25rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-powder) 35%, transparent);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}

@@ -1,0 +1,40 @@
+<header class="header">
+  <div class="header__inner">
+    <a class="header__brand" routerLink="/" (click)="closeMenu()">
+      <span class="header__logo font-ui">OFFICE&nbsp;99</span>
+      <app-badge class="header__est" label="EST. 2026" />
+    </a>
+
+    <button
+      class="header__toggle font-mono"
+      type="button"
+      aria-controls="main-nav"
+      [attr.aria-expanded]="menuOpen()"
+      (click)="toggleMenu()"
+    >
+      {{ menuOpen() ? '[CLOSE]' : '[MENU]' }}
+    </button>
+
+    <nav id="main-nav" class="header__nav" [class.is-open]="menuOpen()" aria-label="Main">
+      <ul role="list">
+        @for (link of links; track link.fragment; let i = $index) {
+          <li>
+            <a
+              class="header__link font-ui"
+              routerLink="/"
+              [fragment]="link.fragment"
+              (click)="closeMenu()"
+            >
+              <span class="font-mono">[0{{ i + 1 }}]</span>
+              {{ link.label }}
+            </a>
+          </li>
+        }
+      </ul>
+
+      <a appButton class="header__cta" routerLink="/" fragment="contact" (click)="closeMenu()">
+        Get in touch
+      </a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,40 @@
+<section id="about" class="about bg-garnet" aria-labelledby="about-title">
+  <div class="about__inner">
+    <div class="about__stack">
+      <img
+        class="about__img about__img--main"
+        src="assets/images/about-model-suit.jpg"
+        alt="Model in an oversized burgundy suit and wire-rim glasses"
+        width="1152"
+        height="1536"
+        loading="lazy"
+      />
+      <img
+        class="about__img about__img--detail"
+        src="assets/images/about-process-coffee.jpg"
+        alt="Espresso on a steel tray among archive folders and paperclips"
+        width="1024"
+        height="1024"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="about__copy">
+      <app-badge label="03 // MANIFESTO" variant="powder" />
+
+      <h2 id="about-title" class="about__statement">
+        We blend 90s corporate aesthetics with cutting-edge front-end engineering.
+        <em>No standard templates, no boring UI.</em>
+      </h2>
+
+      <dl class="about__stats">
+        @for (stat of stats; track stat.value) {
+          <div class="about__stat">
+            <dt class="font-ui">{{ stat.label }}</dt>
+            <dd class="font-display">{{ stat.value }}</dd>
+          </div>
+        }
+      </dl>
+    </div>
+  </div>
+</section>
