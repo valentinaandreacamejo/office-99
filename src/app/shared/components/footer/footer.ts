@@ -12,8 +12,6 @@ interface SocialLink {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Footer {
-  protected readonly year = new Date().getFullYear();
-
   // Placeholder profiles — replace with the studio's real handles.
   protected readonly socials: SocialLink[] = [
     { label: 'GitHub', href: 'https://github.com/' },
